@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+
+	</script>
+	<h2>how to insert another array in parent array</h2>
+	<script>
+		personData = [
+			{ id: 1, name: 'chandan' },
+			{ id: 2, name: 'tanmoy' },
+			{ id: 3, name: 'arup' },
+		];
+		employee = [
+			{ id: 55, degination: 'chandan' },
+			{ id: 20, degination: 'tanmoy' },
+			{ id: 45, degination: 'arup' },
+		];
+		let totalArray = personData.map((ele, index) => {
+			ele.employee = [employee[index]];
+			return ele;
+		});
+		console.log(totalArray);
+		for(let i=0; i<totalArray.length; i++){
+			document.write(totalArray[i].id + ' ' + totalArray[i].name + '<br>' );
+		}
+	</script>
+	<script>
+		arr1 = [1, 2, 3, 8, 7, 9];
+		arr2 = [5, 8, 7, 4, 6, 7];
+		let matchArray = arr1.filter(item => arr2.includes(item));
+		console.log(matchArray);
+
+
+		
+
+		let person = [
+			{ name: 'Suman', id: 1 },
+			{ name: 'Tanmoy', id: 2 },
+			{ name: 'Achyut', id: 3 },
+			{ name: 'Chanden', id: 3 },
+			{ name: 'Arup', id: 3 },
+		]
+		let details = [
+			{ age: 20, color: 'YEllow' },
+			{ age: 24, color: 'red' },
+			{ age: 25, color: 'green' },
+			{ age: 30, color: 'black' },
+			// {age: 24, color: 'pink'},
+		]
+
+		let mapped = person.map((val, index) => {
+			return [val, details[index]];
+		});
+		console.log(mapped);
+
+
+
+		let filter = details.filter(persons => {
+			console.log(persons.color.toUpperCase() == 'yellow');
+			if (persons.age > 20) {
+				return persons.color;
+			}
+		});
+		console.log(filter);
+
+		let arrayFind = details.find((val, index) => {
+			if (val.color.toLowerCase() == 'red') {
+				console.log(index);
+				return val;
+
+			}
+		});
+
+		console.log(arrayFind);
+
+		let ageMapped = details.map((val, index) => {
+			if (val.age > 22) {
+				return val.color;
+			}
+		})
+		console.log(ageMapped);
+
+
+		let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		array.fill(0, 2, 4);
+		console.log(array);
+
+		function fillInNumber(n) {
+			return Array(n).fill(0).map((value, index) => {
+				console.log(index);
+				return index + 1;
+			})
+		}
+		console.log(fillInNumber(10));
+
+
+		let displayedColumns = [
+			{ key: 'id', label: "Id" },
+			{ key: 'className', label: "Class Name" },
+			{ key: 'isActive', label: "Status" },
+			{ key: 'associatedWeight', label: "Associated Weight" },
+			{ key: 'action', label: "Action" },
+		];
+
+
+		let fun = displayedColumns.map((val, index) => {
+			return val["key3"] = "value3";
+		});
+		console.log(fun);
+		console.log(displayedColumns);
+	</script>
+	<div class="col-lg-4 col-md-4 col-sm-4 col-10">
+		<a href="">
+			<img src="" alt="">
+		</a>
+	</div>
+
+	<script>
+		let arr01 = [1, 8, 5, 4, 1, 2, 1, 3, 1, 7];
+
+		for (let i = 0; i < arr01.length; i++) {
+			for (let j = 0; j < arr01.length; j++) {
+				let dublicateNumber = 0;
+				if (arr01[i] === arr01[j]) {
+					// console.log(arr01[j]);
+				}
+			}
+		}
+
+		// console.log(dublicateNumber);
+		// How to find Dublicate array Element
+		// const numbers = [1, 2, 3, 2, 4, 5, 5, 6,2,2];
+		// const set = new Set(numbers);
+		// console.log(set);
+		// const dublicate = numbers.find(item =>{
+		// 	console.log(set.has(item));
+		// 	if(set.has(item)){
+		// 		set.delete(item);
+		// 	}else{
+		// 		return item;
+		// 	}
+		// });
+		// console.log(dublicate);
+
+		const numbers = [1,2,1,5,3,5,1];
+
+		const duplicates = numbers.filter((item, index) => {
+			console.log(numbers.indexOf(item));
+			return index !== numbers.indexOf(item)
+		});
+		console.log(new Set(duplicates));
+// [ 2, 5 ]
+	</script>
+	<h2>check the primary number</h2>
+	<input type="number" id="inputNumber" />
+    <button onclick="myFunction()">Click</button>
+	<script>
+		let valid = true;
+		let number;
+		function myFunction() {
+		  number = document.getElementById("inputNumber").value;
+		  console.log(number);
+		  if(number == 1){
+		  	document.write(1, "is a prime number");
+		  }
+		  else if(number == 2){
+		  	document.write(2, "is a one of even prime number");
+		  }
+		  else if(number > 2){
+		  	for(let i=3; i<number; i++){
+		  		// console.log(i);
+		  		if(number % i === 0){
+		  			valid = false;
+		  			break;
+		  		}
+		  	}
+			  if(valid){
+			  		document.write(number, "is a prime number");
+			  	}
+		  	else{
+		  		document.write(number, "is not a prime number");
+		  	}
+		  }
+		}
+	</script>
+	<h2>what is the factorial number of 5</h2>
+	<script>
+		// let factorialNumber = 10;
+		function factorial(factorialNumber){
+		let result = 1;
+			for(let i=1; i<=factorialNumber; i++){
+				result *= i;
+			}
+				document.write(result);
+		}
+		factorial(5);
+		
+	</script>
+</body>
+
+</html>

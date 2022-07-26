@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+	<button onClick="showLocation()">Show GIO Location</button>
+	<p id="output"></p>
+	<h3>Difference between normal function and arrow function</h3>
+	<script>
+			
+		// 01 arrow function is by default return 
+		// Normal function
+		function normalFn(a,b){
+			return a + b;
+			// console.log(arguments);
+		}
+
+		// Arrow Function
+		arrowFn = (a,b)=> a + b;
+		console.log(normalFn(2,7));
+		console.log(arrowFn(5,6));
+
+		//02 arrow function does not show any argument..
+		let normalFun1 = function (){
+			console.log(arguments);
+		}
+		normalFun1(5,8,9,7,3);
+		let arrowFun2 = ()=>{
+			console.log(arguments);
+		}
+
+		//03 function object constructor arrow function is not working
+		// normal function
+		let functionObj01 = function(name){
+			this.brand = name;
+			this.Person = function (){
+				console.log(this.brand);
+			}
+		}
+		let functionObj2 = new functionObj01('Chandan');
+		functionObj2.Person();
+
+		//arrow function
+		let functionObj02 = function(name){
+			this.brand = name;
+			this.Person = function(){
+				console.log(this.brand);
+			}
+		}
+		let functionObj03 = new functionObj02('Tanushree');
+		functionObj03.Person();
+
+
+		// arrow function do not have their own this
+		let userInfo = {
+			name: "maruti",
+			fullName(){
+				console.log(this.name + " " + "Normal Function");
+			},
+			lastName(){
+				const test = ()=>{
+					console.log(this.name + "Arrow Function");
+				}
+				test();
+			}
+			// lastName:()=>{
+			// 	console.log(this.name + "Arrow Function");
+			// }
+		}
+		userInfo.fullName();
+		userInfo.lastName();
+
+
+		// how many type to write function
+		//01 
+		let sum = function(){
+			return 1+3;
+		}
+		console.log(sum())
+
+		//02
+		function sum2(){
+			return 8+9;
+		}
+		// sum3(){
+		// 	return 4 + 9;
+		// }
+		// console.log(sum3());
+		console.log(sum2());
+
+
+
+		//Explain call(), apply() and, bind() methods.
+
+		// call() Method
+		let obj01 = {
+			name: 'Chandan',
+			degination: 'BA',
+		}
+		let obj02 = {
+			name: 'Tuhin',
+			degination: 'Designer',
+		}
+		let fn01 = function(age, test){
+			console.log(this.name + ' ' + this.degination + ' ' + age + ' ' + test);
+		}
+		fn01.call(obj01, 20, 88);
+		fn01.call(obj02, 14, 78);
+
+		// apply() Method
+		fn01.apply(obj01, ['Maharastra', 'Mumbai']);
+
+		// Bind Method
+		let printPersonalStatus = fn01.bind(obj02, "Pune", "Agra");
+		console.log();
+		printPersonalStatus();
+
+
+		// Function create as a constructor
+		// let personalInfo = function(name, yer){
+		// 	this.brand = name,
+		// 	this.yers = yer,
+		// 	console.log(this);
+			
+		// }
+		// personalInfo.Prototype.yearOfExperience = function(){
+		// 	console.log(this.brand + ' ' + this.yers);
+		// }
+		// let personalInfoStatus = new personalInfo('Shisbobraoto', 14);
+		// let personalInfoStatus02 = new personalInfo('Tuhin', 5);
+		// personalInfo.yearOfExperience();
+		// console.log(personalInfo.Prototype);
+
+		// object Prototype in function
+		// let book = function(Name, Author){
+		// 	this.name = Name,
+		// 	this.author = Author,
+		// }
+		// book.Prototype.bookStatus(){
+		// 	console.log(this.name + this.author);
+		// }
+
+		// const Book = new book('Life of the pai', 'Albert');
+		// console.log(Book.bookStatus());
+
+		// let mmtEmpStatus = {
+		// 	name: 'Sushovan sen',
+		// 	age: 25,
+		// 	designation: 'Tester'
+		// 	convert(name, age){
+		// 		console.log(name + age);
+		// 	}
+		// }
+
+		// console.log(mmtEmpStatus.name);
+
+
+		// geolocation  api in HTML 
+		
+		var x = document.getElementById("output");
+		function showLocation(){
+			console.log(navigator.geolocation);
+			if(navigator.geolocation){
+				navigator.geolocation.getCurrentPosition(showPosition);
+				navigator.geolocation.watchPosition(positionWatch)
+			}else{
+				x.innerHTML = "Browser not supporting";
+			}
+		}
+		function showPosition(position){
+			x.innerHTML = position.coords.latitude;
+			x.innerHTML += '<br/>';
+			x.innerHTML += position.coords.longitude;
+		}
+		function positionWatch(position){
+			console.log(position.coords.latitude);
+		}
+		
+
+		const bc = new BroadcastChannel('test_channel');
+
+		let arr07 = [1,8,7,4,58,7,5,47,9,6,9];
+		// console.log(arr07.slice(0, (arr07.length/2)+1));
+		// console.log(arr07.slice((arr07.length/2)+1));
+		console.log(arr07.length-1);
+		console.log(arr07.splice(arr07.length/2, arr07.length-1, arr07.slice(0, (arr07.length/2)+1)));
+		
+
+		// reverse in array
+		let arr08 = [1,8,5,7,4,5,93,1];
+		// for(let i = arr08.length; i>=0; i--){
+		// 	console.log(arr08[i]);
+		// }
+
+		// 2nd option
+			temp = arr08[1];
+			arr08[1] = arr08[0];
+			arr08[0] = temp;
+			console.log(arr08);
+
+		let a = 10;
+		let c = 20;
+
+		a = a + c; // 30
+		c = a - c; // 10
+		a = a - c;
+
+		console.log(a,c);
+
+
+		let jv = "I love Javascript more";
+		let pattern = 'uokgfv10';
+
+		let longWord = jv.toLowerCase().split(' ').reduce((longest, current)=>{
+			if(longest.length < current.length){
+				return  current
+			}else{
+				return longest;
+			}
+		});
+		console.log(longWord);
+		removArr = longWord.split('').filter(ele=>{
+			if(!pattern.includes(ele)){
+				return ele;
+			}
+		}).join('');
+		console.log(removArr);
+
+		// 2D array print
+		let arr09 = [];
+		for(let i = 0; i<3; i++){
+			for(let j = 0; j<3; j++){
+				arr09.push(i,j);
+			}
+		}
+		console.log(arr09);
+
+	</script>
+</body>
+</html>

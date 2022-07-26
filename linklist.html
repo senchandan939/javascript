@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+		class node{
+			constructor(data, next=null){
+				this.data = data;
+				this.next = next;
+			}
+		}
+		class linkedList{
+			constructor(){
+				this.head = null;
+				this.size = 0;
+			}
+			insertFirst(data){
+				this.head = new node(data, this.head);
+				this.size++;
+			}
+			// insertLast(data){
+			// 	let node = new node(data);
+			// 	let current;
+			// 	if(!this.head){
+			// 		this.head = node;
+			// 	}else{
+			// 		current = this.head;
+			// 		while(current.next){
+			// 			current = current.next;
+			// 		}
+			// 		current.next = node;
+			// 	}
+			// 	this.size++;
+			// }
+			// printList(){
+			// 	let current = this.head;
+			// 	while(current){
+			// 		console.log(current.data);
+			// 		current = current.next;
+			// 	}
+			// }
+		}
+		let ll = new linkedList();
+		ll.insertFirst(100);
+		ll.insertFirst(200);
+		ll.insertFirst(300);
+		// ll.insertLast(400);
+		console.log(ll);
+		// ll.printList();
+	</script>
+</body>
+</html>

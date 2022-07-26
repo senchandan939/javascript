@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="https://ajssissecurityinc.com/wp-content/themes/ajspidersecurity/js/jquery-1.12.3.min.js"></script>
+</head>
+<body>
+  <!-- The title will change to greet the user -->
+  <h1 id="title">Hey</h1>
+  <input id="name-field" placeholder="Enter Your Name"/>
+
+  <p id="print"></p>
+  <!-- <div id="loader" style="position:fixed; width: 50%; height: 600px; background-color: green;">
+    <p>Loaded</p>
+  </div> -->
+  <input type="text" name="">
+</body>
+
+<script>
+
+var bc = new BroadcastChannel('gator_channel');
+
+(()=>{
+  const title = document.getElementById('title');
+  const nameField = document.getElementById('name-field');
+  const setTitle = (userName) => {
+    title.innerHTML = 'Hey ' + userName;
+  }
+
+  bc.onmessage = (messageEvent) => {
+    // If our broadcast message is 'update_title' then get the new title from localStorage
+    if (messageEvent.data === 'update_title') {
+      // localStorage is domain specific so when it changes in one window it changes in the other
+      setTitle(localStorage.getItem('title'));
+    }
+  }
+
+  // When the page loads check if the title is in our localStorage
+  if (localStorage.getItem('title')) {
+    setTitle(localStorage.getItem('title'));
+  } else {
+    setTitle('please tell us your name');
+  }
+
+  nameField.onchange = (e) => {
+    const inputValue = e.target.value;
+    // In the localStorage we set title to the user's input
+    localStorage.setItem('title', inputValue);
+    // Update the title on the current page 
+    setTitle(inputValue);
+    // Tell the other pages to update the title
+    bc.postMessage('update_title');
+  }
+})()
+
+
+let arr  =[1,2,8,9,8,1,5,3];
+function array01(arr){
+  let a = 0;
+  let b = 0;
+  for(let i = 0; i< arr.length; i++){
+    // console.log(arr[i]);
+    
+    if(arr[i] == 1){
+      a++;
+    }else if(arr[i] == 8){
+      b++;
+    }
+
+  }
+  // console.log(a, b)
+  // return a>b? a : b<a ? b : a;
+}
+array01(arr);
+
+
+let arr05 = [1,2,3,4,5, 1,2,3,4,5];
+var Obj01 = new Object;
+var a = 0;
+for(let i=0; i<arr05.length; i++){
+  for(let j=0; j<arr05.length; j++){
+    if(i !== j){
+      if(arr05[i] === arr05[j]){
+        result = true;
+      }
+    }
+  }
+  if(result){
+    break;
+  }
+}
+if(result){
+  console.log("Array contains duplicate elements");
+}else{
+  console.log("Array does not contain duplicate elements");
+}
+console.log(Obj01);
+
+
+const arr06 = [7,2,5,7,2,4,72,47,8,2,4,7,8,9,7];
+const counts = {};
+arr06.forEach((x) => {
+  counts[x] = (counts[x] || 0) + 1;
+});
+// console.log(counts);
+
+
+
+// 01
+// 01 02
+// 01 02 03
+// 01 02 03 04
+
+var num = 5;
+for(let i=0; i<=num; i++){
+  // console.log("i" + i);
+  for(let j=0; j<=i; j++){
+    // console.log("j" + j);
+    document.write(j + " ");
+  }
+  // console.log("</br>")
+  document.write("</br>");
+}
+
+// 01 02 03 04 05
+// 01 02 03 04
+// 01 02 03
+// 01 02
+// 01
+
+for(let m=0; m<=num; m++){
+  document.write('kcnk');
+  for(let n=m; n<=5; n++){
+    // console.log("n" + n);
+    document.write(n + " ");
+  }
+  // console.log("</br>")
+  document.write("</br>");
+}
+
+// jQuery(window).on( 'load', function() {
+//         $("#loading").delay(1500).fadeOut(500);
+//         $("#loading-center").on( 'click', function() {
+//         $("#loading").fadeOut(500);
+//         })
+//     })
+ $(window).on('load', function() {
+       $("#loader").delay(1000).fadeOut(500);
+    })
+
+arr07 = [1,2,3,4,5,6,7,8];
+for(let i=0; i<arr07.length/2; i++){
+  let temp = arr07[i];
+  arr07[i] = arr07[arr07.length-1-i];
+  arr07[arr07.length-1-i] = temp;
+}
+console.log(arr07);
+
+arr08 = [8,7,9,5,7,8,3];
+for(let i=0; i<6; i++){
+  let store = arr08.shift();
+  arr08.push(store);
+  console.log(arr08);
+}
+
+</script>

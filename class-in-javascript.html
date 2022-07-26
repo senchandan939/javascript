@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3 way to define javascript class</title>
+</head>
+<body>
+	<h2>Using a function</h2>
+	<script>
+		function employee(name, exp){   // function
+			this.name = name;
+			this.experience = exp;
+			this.salary = salaryFn;
+		}
+		function salaryFn(){
+			return this.name + " , " + this.experience;
+		}
+		let Emp = new employee('Chandan', 4.5); //Object
+
+		document.write(Emp.name, '<br>');
+		document.write(Emp.salary(), '<br>');
+	</script>
+
+	<h2>Using object literals</h2>
+	<script>
+		let retirementPerson = {
+			name : "Kamal",
+			age : 65,
+			calculate : function (){
+				return this.name + ' , ' + this.age;
+			}
+		}
+
+		document.write(retirementPerson.calculate());
+
+	</script>
+	<h2>Sigleton using a function</h2>
+	<!-- <script>
+		let retailer = new function retailer(name, income){
+			this.name = name;
+			this.income = income;
+			this.profit = function(){
+				return this.income%2;
+			}
+		}
+		retailer('suman', 34000);
+		document.write(retailer.profit());
+	</script> -->
+
+	<script>
+		 function Retailer(name, income){
+			this.name = name;
+			this.income = income;
+			this.profit = function(){
+				return this.income%2;
+			}
+		}
+		let retailer = new Retailer('suman', 34000);
+		document.write(retailer.profit());
+	</script>
+	<p id="print"></p>
+	<script>
+		let fruit = ["apple", "orange", "bannana"];
+		for(let i =0; i<fruit.length; i++){
+			document.getElementById("print").innerHTML = fruit[i];
+		}
+		// ki print have
+		// "apple", "orange", "bannana" na
+		// "bannana"
+	</script>
+</body>
+</html>

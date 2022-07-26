@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Function</title>
+</head>
+<body>
+	<h3>Call Back function, Higher order function, Immediate Function, Closer Function</h3>
+	<button id="clickBtn01">Click button</button>
+	<button onClick="attachedEventListeners()" id="clickBtn02">Closer Function</button>
+	<button onClick="x()" id="clickBtn02">Closer Function 02</button>
+	<script>
+		// call back function
+		// call back function is normal function , when function argument is passed in another function this is called call back function
+		function result(value){
+			console.log("Call Back Function", + value);
+		}
+		let sum = function(a, b, callBack){
+			let sum = a + b;
+			callBack(sum);
+		}
+		let into = function(a,b, callBack){
+			let into = a * b;
+			callBack(into);
+		}
+		
+		sum(5,10, result);
+		into(5,10, result);
+
+		document.getElementById('clickBtn01').addEventListener("click", function(xyz){
+			console.log("Button was clicked");
+		});
+
+		function attachedEventListeners(){
+			let count = 0;
+			document.getElementById('clickBtn02').addEventListener("click", function(xyz){
+				console.log("Button was clicked", ++count);
+			});
+		}
+
+
+		//Higher order function
+
+		//A higher order function is a function that takes a function as an argument, or returns a function . Higher order function is in contrast to first order functions, which don't take a function as an argument or return a function as output.
+
+
+		// function x(){
+		// 	console.log("Namaste");
+		// }
+		// function y(x){
+		// 	x();
+		// }();
+		
+		const redius = [5,8,1,9,7];
+		const area = function (radius){
+			return Math.PI * radius * radius;
+		}
+		const Circumference = function (radius){
+			return 2 * Math.PI * radius;
+		}
+		const diameater = function (radius){
+			return 2 * radius;
+		}
+		
+		// calculateRadius Higher order function
+		const calculateRadius = function(radius, logic){
+			const outPut = [];
+			for(let i=0; i<radius.length; i++){
+				outPut.push(logic(radius[i]));
+			}
+			return outPut;
+		}
+
+		console.log(calculateRadius(redius, area));
+		console.log(calculateRadius(redius, Circumference));
+		console.log(calculateRadius(redius, diameater));
+
+		// Closer function
+
+		function x(){
+			// alert("closer");
+			var increse = 0;
+			function y(){
+				return increse = increse + 1;
+			}
+			y();
+		}
+		console.log(x());
+
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="myDialog" style="display: none;">
+		<form action="" id="accordianForm">
+			<input type="text" placeholder="Title" id="title" name="title">
+			<input type="date" placeholder="date" id="date" name="date">
+			<textarea id="" cols="30" rows="10" id="dec" name="dec"></textarea>
+			<button type="button" value="Submit" onclick="myFunction()" >Submit</button>
+			<!-- <p onclick="myFunction()">Submit</p> -->
+		</form>
+	</div>
+
+	<div class="accordion">
+		<ul>
+			<li id="list">
+			</li>
+		</ul>
+	</div>
+	<a href="javascript:void(0)" onclick="addAccordian()">Add Accordian</a>
+
+
+	<!-- <div id="myContent"></div> -->
+
+	<script>
+		function addAccordian(){
+			console.log("clicked");
+			document.getElementById("myDialog").style.display = "block";
+		}
+
+		let accordionAll = [];
+		
+		
+		function myFunction(){
+			let formObj = {};
+			let accordion = [];
+			let form = document.getElementById("accordianForm");
+			const title = form.elements["title"].value;
+			const date = form.elements['date'].value;
+			const description = form.elements['dec'].value;
+			formObj['title'] = title;
+			formObj['date'] = date;
+			formObj['dec'] = description;
+			console.log(formObj);
+			accordion.push(formObj);
+			window.localStorage.setItem("accordion", JSON.stringify(accordion));
+			console.log(window.localStorage.getItem('accordion'));
+			// console.log(localStorage.length);
+			if(localStorage.length>0){
+				accordionAll = JSON.parse(window.localStorage.getItem('accordion'));
+				console.log(accordionAll);
+			}
+		}
+		var ul = document.getElementById("list");
+
+
+		    for(let i=0; i<accordionAll.length; i++){
+				document.getElementById("list").innerHTML += '<li>' + 
+				'<h3>' + accordionAll[i].title + '</h3>' +
+				'<p>' + accordionAll[i].dec + '</p>' +
+				'<span>' + accordionAll[i].date + '</span>'+
+				'</li>';
+
+			}
+
+
+		
+
+
+		
+		
+
+		// let myContent = document.getElementById('myContent');
+		// var docFrag = document.createDocumentFragment();
+
+		// var heading = document.createElement('h1');
+		// heading.innerHTML = "I love javascript";
+		// var para = document.createElement('p');
+		// para.innerHTML = "Lorem Ipsum"
+		// console.log(heading, para)
+
+		// docFrag.appendChild(heading);
+		// docFrag.appendChild(para);
+		// myContent.appendChild(docFrag);
+		// document.body.insertBefore(para, heading);
+</script>
+</body>
+</html>
