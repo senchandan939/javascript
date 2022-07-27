@@ -16,9 +16,7 @@
 	</div>
 
 	<div class="accordion">
-		<ul>
-			<li id="list">
-			</li>
+		<ul id="list">
 		</ul>
 	</div>
 	<a href="javascript:void(0)" onclick="addAccordian()">Add Accordian</a>
@@ -33,11 +31,11 @@
 		}
 
 		let accordionAll = [];
+		let accordion = JSON.parse(window.localStorage.getItem('accordion'));
 		
 		
 		function myFunction(){
 			let formObj = {};
-			let accordion = [];
 			let form = document.getElementById("accordianForm");
 			const title = form.elements["title"].value;
 			const date = form.elements['date'].value;
@@ -50,21 +48,25 @@
 			window.localStorage.setItem("accordion", JSON.stringify(accordion));
 			console.log(window.localStorage.getItem('accordion'));
 			// console.log(localStorage.length);
-			if(localStorage.length>0){
-				accordionAll = JSON.parse(window.localStorage.getItem('accordion'));
-				console.log(accordionAll);
-			}
+			showData();
+			
 		}
-		var ul = document.getElementById("list");
-
-
-		    for(let i=0; i<accordionAll.length; i++){
-				document.getElementById("list").innerHTML += '<li>' + 
-				'<h3>' + accordionAll[i].title + '</h3>' +
-				'<p>' + accordionAll[i].dec + '</p>' +
-				'<span>' + accordionAll[i].date + '</span>'+
-				'</li>';
-
+		window.onload = showData();
+		function showData(){
+			// var ul = document.getElementById("list");
+			// alert('kkkk')
+			const testData = JSON.parse(window.localStorage.getItem('accordion'));
+			console.log(testData);
+			document.getElementById("list").innerHTML ='';
+	
+				for(let i=0; i<testData.length; i++){
+					document.getElementById("list").innerHTML += '<li>' + 
+					'<h3>' + testData[i].title + '</h3>' +
+					'<p>' + testData[i].dec + '</p>' +
+					'<span>' + testData[i].date + '</span>'+
+					'</li>';
+	
+				}
 			}
 
 
